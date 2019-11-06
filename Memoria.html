@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>  
+  <body style="height:100%; position:absolute; top:0; left:0; right:0; bottom:0; overflow: auto; display:block;">
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      
+      class Flipcard extends React.Component {
+        constructor(props) {
+          super(props)
+		  console.log(this.props.flipcard.url);
+		  }
+		
+        render(){
+		  
+          const style = {
+            backgroundColor: 'transparent',
+            width: '100%',
+            height: '100%',
+            perspective: '1000px',
+            borderRadius: '5px'
+          }
+          
+          const flipcardinner={
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            textAlign: 'center',
+            transition: 'transform 0.8s',
+            transformStyle: 'preserve-3d',
+            transform: `rotateY(${this.props.flipcard.deg}deg)`,
+            left: '-1.7px',
+            borderRadius: '5px'
+          }
+          
+          const flipcardfront={
+            backgroundColor: '#bbb',
+            color: 'black',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backfaceVisibility: 'hidden',
+            backgroundImage:`${this.props.flipcard.url}`,
+            backgroundSize: 'cover',
+            borderRadius: '5px'
+          } 
+		  
+		  const img={
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            backfaceVisibility: 'hidden',
+            backgroundSize: 'cover',
+            borderRadius: '5px'
+          } 
+		  
+          
+          const flipcardback={
+            color: 'white',
+            transform: 'rotateY(180deg)',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backfaceVisibility: 'hidden',
+            backgroundImage: 'url(https://i.pinimg.com/564x/fb/a2/4b/fba24b3e408438a26403fd2d8042479c.jpg)',
+            backgroundSize: 'cover',
+            borderRadius: '5px'
+          }
+          
+          return <div style={style} > 
+                  <div style={flipcardinner} tabIndex={0}>
+                    <div style={flipcardfront}>
+						
+                    </div>
+                    <div style={flipcardback}>
+						
+                    </div>
+                </div>
+                </div>
+        }
+      }
+      
+      class Game extends React.Component {
+        
+        constructor(props) {
+          super(props)
+          
+          this.state = {
+            moves: 0,
+			total: 0,
+            c1: 0,
+            c2: 0,
+            card1: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/3a/9c/9d/3a9c9d74ed87a6da663d9f68ad0aded5.jpg)"
+              
+            },
+            card2: {
+              deg: 180,
+			  url: "url(https://i.pinimg.com/564x/c5/3c/d6/c53cd67b47bfcbbd56556c7ccb687f1d.jpg)"
+              
+               
+            },
+            card3: {
+              deg: 180,
+			  url: "url(https://i.pinimg.com/564x/c5/86/f9/c586f9ad99b30e6b0e10e2e7fe25556a.jpg)"
+              
+              
+            },
+            card4: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/48/22/72/482272e58c0127300b19322a88391691.jpg)"
+              
+              
+            },
+            card5: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/cf/dd/3a/cfdd3afe1ed15b40be8308713b0592c2.jpg)"
+              
+            },
+            card6: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/fc/da/4c/fcda4c7ac0b0dbb01048c9db6182f62a.jpg)"
+              
+            },
+            card7: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/15/ed/1b/15ed1b892f53b2eb98e7f4920844f6a6.jpg)"
+              
+            },
+            card8: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/6f/b8/58/6fb85806a256a32a18fcf9d72e18fbc7.jpg)"
+              
+            },
+            card9: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/d2/c1/0b/d2c10bc63616d79191e4ce9e55a80d12.jpg)"
+              
+            },
+            card10: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/72/24/2a/72242a004829506bd1edf4d2d201e1f3.jpg)"
+              
+            },
+            card11: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/5a/64/86/5a64860329a66b22f37aa231726e1159.jpg)"
+              
+            },
+            card12: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/95/d0/a0/95d0a0b11b4a32f4e42638f4bd2a3b39.jpg)"
+              
+            },
+            card13: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/ca/29/df/ca29dfbe7ce1b052afdb6b0ba520818a.jpg)"
+              
+            },
+            card14: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/76/b4/b7/76b4b71af9ebf1d13e92931b19cf7105.jpg)"
+              
+            },
+            card15: {
+              deg: 180,
+              url: "url(https://i.pinimg.com/564x/ad/a0/dd/ada0dda449c32744e8e8d0bc0dcb0a9c.jpg)"
+              
+            },
+            card16: {
+              deg: 180,
+              url: "url(http://2.bp.blogspot.com/--yCGCtotGsk/VVaAeBpD0VI/AAAAAAABB-A/E5QWvtrdwa8/s1600/Three%2BOf%2BCoins.jpg)"
+              
+            }
+          }
+		  console.log(this.state.card1.url);
+        } 
+        
+          
+        flip(i){ 
+          this.setState({moves: this.state.moves + 1});
+		  this.setState({total: this.state.total + 1});
+          if (i ==1){
+            if (this.state.c1 != 1){
+                this.setState({card1: { deg: this.state.card1.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 1});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 1});
+              }
+            }
+          } else
+          if (i ==2){
+            if (this.state.c1 != 2){
+                this.setState({card2: { deg: this.state.card2.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 2});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 2});
+              }
+            }
+          } else
+          if (i ==3){
+            if (this.state.c1 != 3){
+                this.setState({card3: { deg: this.state.card3.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 3});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 3});
+              }
+            }
+          } else
+          if (i ==4){
+            if (this.state.c1 != 4){
+                this.setState({card4: { deg: this.state.card4.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 4});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 4});
+              }
+            }
+          } else
+          if (i ==5){
+            if (this.state.c1 != 5){
+                this.setState({card5: { deg: this.state.card5.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 5});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 5});
+              }
+            }
+          } else
+          if (i ==6){
+            if (this.state.c1 != 6){
+                this.setState({card6: { deg: this.state.card6.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 6});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 6});
+              }
+            }
+          } else
+          if (i ==7){
+            if (this.state.c1 != 7){
+                this.setState({card7: { deg: this.state.card7.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 7});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 7});
+              }
+            }
+          } else
+          if (i ==8){ 
+            if (this.state.c1 != 8){
+                this.setState({card8: { deg: this.state.card8.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 8});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 8});
+              }
+            }
+          } else
+          if (i ==9){
+            if (this.state.c1 != 9){
+                this.setState({card9: { deg: this.state.card9.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 9});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 9});
+              }
+            }
+          } else
+          if (i ==10){ 
+            if (this.state.c1 != 10){
+                this.setState({card10: { deg: this.state.card10.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 10});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 10});
+              }
+            }
+          } else
+          if (i ==11){
+            if (this.state.c1 != 11){
+                this.setState({card11: { deg: this.state.card11.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 11});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 11});
+              }
+            }
+          } else
+          if (i ==12){
+            if (this.state.c1 != 12){
+                this.setState({card12: { deg: this.state.card12.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 12});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 12});
+              }
+            }
+          } else
+          if (i ==13){
+            if (this.state.c1 != 13){
+                this.setState({card13: { deg: this.state.card13.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 13});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 13});
+              }
+            }
+          } else
+          if (i ==14){
+            if (this.state.c1 != 14){
+                this.setState({card14: { deg: this.state.card14.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 14});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 14});
+              }
+            }
+          } else
+          if (i ==15){
+            if (this.state.c1 != 15){
+                this.setState({card15: { deg: this.state.card15.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 15});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 15});
+              }
+            }
+          } else
+          if (i ==16){
+            if (this.state.c1 != 16){
+                this.setState({card16: { deg: this.state.card16.deg + 180}});
+              if(this.state.moves == 0){
+                this.setState({c1: 16});
+              }
+              if(this.state.moves == 1){
+                this.setState({c2: 16});
+              }
+            }
+          } 
+          //alert('c1'+this.state.c1);
+          //alert('c2'+this.state.c2);
+          //alert(this.state.moves)
+           } 
+        
+         
+        
+         flipBack(c1, c2){
+          window.setTimeout(()=>{
+            
+        
+          if (c1 == 1 || c2 == 1){
+            this.setState({card1: { deg:180}});
+          } 
+          if (c1 ==2 || c2 == 2){
+            this.setState({card2: { deg:180}});
+          } 
+          if (c1 ==3 || c2 == 3){
+            this.setState({card3: { deg:180}});
+          } 
+          if (c1 ==4 || c2 == 4){
+            this.setState({card4: { deg:180}});
+          } 
+          if (c1 ==5 || c2 == 5){
+            this.setState({card5: { deg:180}});
+          } 
+          if (c1 ==6 || c2 == 6){
+            this.setState({card6: { deg:180}});
+          } 
+          if (c1 ==7 || c2 == 7){
+            this.setState({card7: { deg:180}});
+          } 
+          if (c1 ==8 || c2 == 8){
+            this.setState({card8: { deg:180}});
+          } 
+          if (c1 ==9 || c2 == 9){
+            this.setState({card9: { deg:180}});
+          } 
+          if (c1 ==10 || c2 == 10){ 
+            this.setState({card10: { deg:180}});
+          } 
+          if (c1 ==11 || c2 == 11){
+            this.setState({card11: { deg:180}});
+          } 
+          if (c1 ==12 || c2 == 12){
+            this.setState({card12: { deg:180}});
+          } 
+          if (c1 ==13 || c2 == 13){
+            this.setState({card13: { deg:180}});
+          } 
+          if (c1 ==14 || c2 == 14){
+            this.setState({card14: { deg:180}});
+          } 
+          if (c1 ==15 || c2 == 15){
+            this.setState({card15: { deg:180}});
+          } 
+          if (c1 ==16 || c2 == 16){
+            this.setState({card16: { deg:180}});
+          } 
+          }, 620);
+        } 
+         
+        componentDidMount() {           
+          const frame = () => {
+            //this.setState({c1: this.state.c1, c2: this.state.c2 })
+            if (this.state.moves == 2){
+            //alert('dos '+ this.state.c1+ ' ' +this.state.c2);
+            //alert('images '+this.state.i1+' '+this.state.i2)
+              this.setState({moves: 0});
+              this.flipBack(this.state.c1,this.state.c2);
+              this.setState({c1:0, c2:0});
+              
+            }
+            requestAnimationFrame(frame)
+        } 
+          requestAnimationFrame(frame)
+        }
+        
+
+        
+        render() {
+          const style = {
+            position: 'relative',
+            display: 'grid',
+            width: '45%',
+            gridTemplateColumns: 'repeat(4, 25%)',
+            gridTemplateRows: 'auto auto auto',
+            backgroundColor: 'transparent',
+            padding: '10px',
+            left: '30%',
+            top: '3%'
+          }
+          
+          const card = {
+            padding: '5px',
+            fontSize: '15px',
+            textAlign: 'center',
+            height: '145px',
+            width: '90%',
+            borderRadius: '5px',
+            margin: '2px'
+            
+            
+          }
+		  
+		  const style2 = {
+		  width: '100%',
+            height: '100%',
+            backgroundImage: 'url(http://getwallpapers.com/wallpaper/full/f/3/2/657171.jpg)',
+            backgroundSize: 'cover',
+			display:'block',
+		  }
+          const moves ={
+		  position: 'relative',
+		  color: 'white',
+		  left: '3%',
+		  bottom: '100px'
+		
+	
+		  }
+          
+          return (
+			<div style={style2}>
+            <div style={style} >
+              <div style={card} onClick={() => this.flip(1)}> 
+              
+                <Flipcard flipcard={this.state.card1}/>
+             
+              </div>
+              <div style={card} onClick={() => this.flip(2)}>
+                <Flipcard flipcard={this.state.card2}/>
+              </div>
+              <div style={card} onClick={() => this.flip(3)}>
+                <Flipcard flipcard={this.state.card3}/>
+              </div>
+              <div style={card} onClick={() => this.flip(4)}>
+                <Flipcard flipcard={this.state.card4}/>
+              </div>
+              <div style={card} onClick={() => this.flip(5)}>
+                <Flipcard flipcard={this.state.card5}/>
+              </div>
+              <div style={card} onClick={() => this.flip(6)}>
+                <Flipcard flipcard={this.state.card6}/>
+              </div>
+              <div style={card} onClick={() => this.flip(7)}>
+                <Flipcard flipcard={this.state.card7}/>
+              </div>
+              <div style={card} onClick={() => this.flip(8)}>
+                <Flipcard flipcard={this.state.card8}/>
+              </div>
+              <div style={card} onClick={() => this.flip(9)}> 
+                <Flipcard flipcard={this.state.card9}/> 
+              </div>
+              <div style={card} onClick={() => this.flip(10)}>
+                <Flipcard flipcard={this.state.card10}/>
+              </div>
+              <div style={card} onClick={() => this.flip(11)}>
+                <Flipcard flipcard={this.state.card11}/>
+              </div>
+              <div style={card} onClick={() => this.flip(12)}>
+                <Flipcard flipcard={this.state.card12}/>
+              </div>
+              <div style={card} onClick={() => this.flip(13)}>
+                <Flipcard flipcard={this.state.card13}/>
+              </div>
+              <div style={card} onClick={() => this.flip(14)}>
+                <Flipcard flipcard={this.state.card14}/>
+              </div>
+              <div style={card} onClick={() => this.flip(15)}>
+                <Flipcard flipcard={this.state.card15}/>
+              </div>
+              <div style={card} onClick={() => this.flip(16)}>
+                <Flipcard flipcard={this.state.card16}/>
+              </div>
+              
+               
+            </div>
+			<div style={moves}>
+			Movimientos: {this.state.total}
+			</div>
+			</div>
+
+      
+          )
+        }
+      }
+      
+      ReactDOM.render(
+        <Game />,
+        document.getElementById('root')
+      )
+    </script>
+	<div style="width:100%; height:10%; background-color: black; position: relative; top: 0%"/>
+  </body>
+</html>
+
